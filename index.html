@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+  </head>
+  <!-- fonts calculator screen -->
+  <link
+    href="https://allfont.net/allfont.css?fonts=digital-7-mono"
+    rel="stylesheet"
+    type="text/css"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <body>
+    <h1>I present you the <span id="calcText"> 'Calculator' </span> .</h1>
+    <cite> - Decode the universal language. </cite>
+    <div class="container">
+      <div class="calculator" id="calc-box">
+        <form>
+          <div class="display">
+            <div class="screenOff"></div>
+            <input
+              type="text"
+              name="screen"
+              id="inputScreen"
+              placeholder="0000000000000000"
+              maxlength="16"
+              readonly
+            />
+          </div>
+
+          <div class="row-one">
+            <input type="button" id="btns" value="AC" onclick="screen.value = '' " />
+            <input type="button" id="btns" value="PW" onclick="turnOn()" />
+            <input
+              type="button" id="btns"
+              value="DEL"
+              onclick="screen.value = screen.value.toString().slice(0, -1) "
+            />
+          </div>
+
+          <div class="row-two">
+            <input type="button" id="btns" value="7" onclick="screen.value += '7'" />
+            <input type="button" id="btns" value="8" onclick="screen.value += '8'" />
+            <input type="button" id="btns" value="9" onclick="screen.value += '9'" />
+            <input
+              type="button" id="btns"
+              value="*"
+              class="operator"
+              onclick="screen.value += '*' "
+            />
+          </div>
+
+          <div class="row-three">
+            <input type="button" id="btns" value="4" onclick="screen.value += '4'" />
+            <input type="button" id="btns" value="5" onclick="screen.value += '5'" />
+            <input type="button" id="btns" value="6" onclick="screen.value += '6'" />
+            <input
+              type="button" id="btns"
+              value="/"
+              class="operator"
+              onclick="screen.value += '/' "
+            />
+          </div>
+
+          <div class="row-four">
+            <input type="button" id="btns" value="1" onclick="screen.value += '1'" />
+            <input type="button" id="btns" value="2" onclick="screen.value += '2'" />
+            <input type="button" id="btns" value="3" onclick="screen.value += '3'" />
+            <input
+              type="button" id="btns"
+              value="-"
+              class="operator"
+              onclick="screen.value += '-' "
+            />
+          </div>
+
+          <div class="row-five">
+            <input type="button" id="btns" value="0" onclick="screen.value += '0'" />
+            <input
+              type="button" id="btns"
+              value="."
+              class="operator"
+              onclick="screen.value += '.'  "
+            />
+            <input type="button" id="btns" value="=" onclick="equals()" />
+            <input
+              type="button" id="btns"
+              value="+"
+              class="operator"
+              onclick="screen.value += '+'  "
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="function.js"></script>
+  </body>
+</html>
