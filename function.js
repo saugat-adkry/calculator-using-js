@@ -1,5 +1,9 @@
 const inp = document.querySelector('input[type="text"]');
 inp.style.zIndex = "0";
+var op = ["+", "-", "*", "/", "."];
+var filteredOP = op.filter((d)=> d !== '.') // contains every op except '.'
+const decBtn = document.querySelector('input[value="."]')
+
 
 //function to turn screen on and off
 function turnOn() {
@@ -17,13 +21,29 @@ function turnOn() {
 
 // to check if clicked button is operator or not
 function isOperator(char) {
-  return ["+", "-", "*", "/", "."].includes(char);
+  return op.includes(char);
 }
 
 //to check if screen value is an error or not
 function scrValue(scVal) {
   return ["undefined", "NaN", "Infinity"].includes(scVal);
 }
+
+// to check if decimal is already pressed
+function screenDecimal(sc) {
+  return sc.includes(".");
+}
+
+// to DISABLE decimal btn
+function disableDecimal(){
+  decBtn.disabled = true;
+}
+
+// to ENABLE decimal btn
+function enableDecimal(){
+    decBtn.disabled = false;
+}
+
 
 // to remove unwated operator press
 function check(btnValue) {
@@ -39,6 +59,18 @@ function check(btnValue) {
       }
     });
   }
+
+  // check if sc value and pressed btn value are decimal
+  if (screenDecimal(inp.value) && btnValue === '.'){
+    allBtns.forEach((button)=>{
+      if ( button.value === '.'){
+        disableDecimal(); // if decimal is pressed, disable decimal btn
+      }
+      if (button.value.includes(filteredOP)){
+        enableDecimal(); // if non decimal op is pressed, enable decimal btn
+      }
+    })
+  }
 }
 
 // when AC and PW are clicked after error , enable all buttons
@@ -48,8 +80,8 @@ acBtn.addEventListener("click", () => {
     button.disabled = false;
   });
 });
-// when AC and PW are clicked after error , enable all buttons
 
+// when AC and PW are clicked after error , enable all buttons
 const pwBtn = document.querySelector('.calculator input[value="PW"]');
 pwBtn.addEventListener("click", () => {
   allBtns.forEach((button) => {
